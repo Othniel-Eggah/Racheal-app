@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For Racheal ❤️</title>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --primary: #ff4d6d; --secondary: #590d22; }
+        body {
+            margin: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
+            font-family: 'Outfit', sans-serif; overflow: hidden;
+        }
+
+        /* Progress Bar */
+        .progress-container { width: 300px; height: 6px; background: rgba(255,255,255,0.5); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
+        #progress-bar { width: 20%; height: 100%; background: var(--primary); transition: 0.5s; }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.4); padding: 2rem;
+            border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            text-align: center; max-width: 360px; width: 85%; z-index: 10;
+        }
+
+        .img-wrapper {
+            width: 100px; height: 100px; margin: 0 auto 1.2rem;
+            border-radius: 50%; overflow: hidden;
+            border: 3px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        .couple-img { width: 100%; height: 100%; object-fit: cover; }
+
+        h1 { color: var(--secondary); font-family: 'Dancing Script', cursive; font-size: 2rem; margin: 0 0 0.8rem 0; }
+        p { color: #8c2f39; font-size: 1.05rem; line-height: 1.5; margin-bottom: 1.5rem; min-height: 60px; }
+
+        .btn-group { display: flex; justify-content: center; align-items: center; gap: 12px; min-height: 80px; }
+        button {
+            padding: 12px 28px; border: none; border-radius: 50px;
+            font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.3s ease;
+        }
+        .next-btn { background: var(--primary); color: white; box-shadow: 0 6px 12px rgba(255, 77, 109, 0.3); }
+        #noBtn { background: white; color: #666; border: 1px solid #ddd; }
+        .hidden { display: none; }
+
+        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
+        .active-step { animation: fadeIn 0.6s ease forwards; }
+    </style>
+</head>
+<body>
+
+    <iframe id="player" width="0" height="0" src="https://www.youtube.com/embed/l789l6np-qA?enablejsapi=1" frameborder="0"></iframe>
+
+    <div class="progress-container"><div id="progress-bar"></div></div>
+
+    <div class="glass-card">
+        <div class="img-wrapper">
+            <img src="https://i.postimg.cc/bwxVYWtw/Whats-App-Image-2026-02-09-at-12-53-52.jpg" class="couple-img" alt="Racheal">
+        </div>
+
+        <div id="step1" class="active-step">
+            <h1>Hi Racheal...</h1>
+            <p>Before I ask you something, I wanted to tell you a few things I've been keeping in my heart.</p>
+            <button class="next-btn" onclick="next(2, 40)">Start the Journey ❤️</button>
+        </div>
+
+        <div id="step2" class="hidden">
+            <h1>The Way You Shine</h1>
+            <p>Every time you smile, Racheal, it genuinely makes my whole day brighter. You have a heart that's so rare to find.</p>
+            <button class="next-btn" onclick="next(3, 60)">Tell me more...</button>
+        </div>
+
+        <div id="step3" class="hidden">
+            <h1>My Favorite Person</h1>
+            <p>I cherish the way you listen, the way you laugh, and how you make everything feel so easy and peaceful.</p>
+            <button class="next-btn" onclick="next(4, 80)">One last thing...</button>
+        </div>
+
+        <div id="step4" class="hidden">
+            <h1>I'm So Grateful</h1>
+            <p>Having you in my life is a gift I never want to take for granted. You are incredible, inside and out.</p>
+            <button class="next-btn" onclick="next(5, 100)">Click for the surprise...</button>
+        </div>
+
+        <div id="step5" class="hidden">
+            <h1>Will you be my Valentine?</h1>
+            <div class="btn-group">
+                <button id="yesBtn" class="next-btn" onclick="celebrate()">Yes! ❤️</button>
+                <button id="noBtn" onmouseover="moveNo()">No</button>
+            </div>
+        </div>
+
+        <div id="step6" class="hidden">
+            <img src="https://media.tenor.com/gU_vSp_966gAAAAM/bear-kiss-bear-love.gif" style="width:100px; margin-bottom: 1rem;">
+            <h1>It's Official! ❤️</h1>
+            <p>You've made me the happiest guy, Racheal. Check your email to send the confirmation!</p>
+        </div>
+    </div>
+
+    <script>
+        let yesScale = 1;
+
+        function next(step, progress) {
+            // Play music on first click
+            if(step === 2) {
+                document.getElementById('player').src += "&autoplay=1";
+            }
+            
+            // Hide all steps
+            for(let i=1; i<=6; i++) {
+                const el = document.getElementById('step' + i);
+                if(el) el.classList.add('hidden');
+            }
+            
+            // Show current step
+            const current = document.getElementById('step' + step);
+            current.classList.remove('hidden');
+            current.classList.add('active-step');
+            
+            // Update progress bar
+            document.getElementById('progress-bar').style.width = progress + '%';
+        }
+
+        function moveNo() {
+            const noBtn = document.getElementById('noBtn');
+            const yesBtn = document.getElementById('yesBtn');
+            
+            noBtn.style.position = 'fixed';
+            noBtn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
+            noBtn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+
+            yesScale += 0.5;
+            yesBtn.style.transform = `scale(${yesScale})`;
+        }
+
+        function celebrate() {
+            next(6, 100);
+            confetti({ particleCount: 200, spread: 80, origin: { y: 0.6 } });
+
+            setTimeout(() => {
+                const email = "Emmanueleggah@gmail.com";
+                const subject = "I'D LOVE TO BE YOUR VALENTINE! ❤️";
+                const body = "Hi Emmanuel! I just went through the journey you made for me. My answer is YES!";
+                window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
