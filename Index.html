@@ -33,7 +33,7 @@
         <h2 id="choice-reveal"></h2>
         <p id="choice-desc"></p>
         <hr>
-        <p>The next stage unfolds at <strong>5:00 PM WAT</strong> today.</p>
+        <p>The next stage unfolds at <strong>6:00 PM WAT</strong> today.</p>
         <div id="timer">Checking time...</div>
     </div>
 
@@ -81,7 +81,7 @@
         const choice = localStorage.getItem('valChoice');
         const now = new Date();
         const unlockTime = new Date();
-        unlockTime.setHours(17, 0, 0); // 5:00 PM
+        unlockTime.setHours(18, 0, 0); // 6:00 PM
 
         if (!choice) {
             showStage('stage1');
