@@ -3,148 +3,139 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Racheal ❤️</title>
-    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Outfit:wght@300;600&display=swap" rel="stylesheet">
+    <title>Valentine's 2026: The Journey</title>
     <style>
-        :root { --primary: #ff4d6d; --secondary: #590d22; }
-        body {
-            margin: 0; height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
-            font-family: 'Outfit', sans-serif; overflow: hidden;
-        }
-
-        /* Progress Bar */
-        .progress-container { width: 300px; height: 6px; background: rgba(255,255,255,0.5); border-radius: 10px; margin-bottom: 20px; overflow: hidden; }
-        #progress-bar { width: 20%; height: 100%; background: var(--primary); transition: 0.5s; }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.4); padding: 2rem;
-            border-radius: 30px; box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            text-align: center; max-width: 360px; width: 85%; z-index: 10;
-        }
-
-        .img-wrapper {
-            width: 100px; height: 100px; margin: 0 auto 1.2rem;
-            border-radius: 50%; overflow: hidden;
-            border: 3px solid white; box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-        .couple-img { width: 100%; height: 100%; object-fit: cover; }
-
-        h1 { color: var(--secondary); font-family: 'Dancing Script', cursive; font-size: 2rem; margin: 0 0 0.8rem 0; }
-        p { color: #8c2f39; font-size: 1.05rem; line-height: 1.5; margin-bottom: 1.5rem; min-height: 60px; }
-
-        .btn-group { display: flex; justify-content: center; align-items: center; gap: 12px; min-height: 80px; }
-        button {
-            padding: 12px 28px; border: none; border-radius: 50px;
-            font-size: 1rem; font-weight: 600; cursor: pointer; transition: 0.3s ease;
-        }
-        .next-btn { background: var(--primary); color: white; box-shadow: 0 6px 12px rgba(255, 77, 109, 0.3); }
-        #noBtn { background: white; color: #666; border: 1px solid #ddd; }
+        :root { --pink: #ff4d6d; --bg: #fff5f5; --blue: #007bff; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); display: flex; justify-content: center; align-items: center; min-height: 100vh; margin: 0; text-align: center; }
+        .card { background: white; padding: 30px; border-radius: 25px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 90%; max-width: 400px; }
+        h1 { color: var(--pink); }
         .hidden { display: none; }
-
-        @keyframes fadeIn { from { opacity: 0; transform: scale(0.9); } to { opacity: 1; transform: scale(1); } }
-        .active-step { animation: fadeIn 0.6s ease forwards; }
+        .btn-choice { background: var(--pink); color: white; border: none; padding: 20px 40px; border-radius: 15px; font-size: 1.5rem; cursor: pointer; margin: 10px; transition: 0.3s; }
+        .btn-choice:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(255,77,109,0.4); }
+        #timer { font-weight: bold; color: var(--pink); font-size: 1.2rem; margin-top: 10px; }
+        .badge { display: inline-block; padding: 5px 15px; border-radius: 20px; font-size: 0.8rem; font-weight: bold; margin-bottom: 15px; }
+        .her-turn { background: #ffe3e8; color: #ff4d6d; }
+        .his-turn { background: #e7f3ff; color: #007bff; }
+        .question-text { font-size: 1.2rem; min-height: 100px; display: flex; align-items: center; justify-content: center; padding: 0 10px; }
     </style>
 </head>
 <body>
 
-    <iframe id="player" width="0" height="0" src="https://www.youtube.com/embed/l789l6np-qA?enablejsapi=1" frameborder="0"></iframe>
-
-    <div class="progress-container"><div id="progress-bar"></div></div>
-
-    <div class="glass-card">
-        <div class="img-wrapper">
-            <img src="https://i.postimg.cc/bwxVYWtw/Whats-App-Image-2026-02-09-at-12-53-52.jpg" class="couple-img" alt="Racheal">
-        </div>
-
-        <div id="step1" class="active-step">
-            <h1>Hi Racheal...</h1>
-            <p>Before I ask you something, I wanted to tell you a few things I've been keeping in my heart.</p>
-            <button class="next-btn" onclick="next(2, 40)">Start the Journey ❤️</button>
-        </div>
-
-        <div id="step2" class="hidden">
-            <h1>The Way You Shine</h1>
-            <p>Every time you smile, Racheal, it genuinely makes my whole day brighter. You have a heart that's so rare to find.</p>
-            <button class="next-btn" onclick="next(3, 60)">Tell me more...</button>
-        </div>
-
-        <div id="step3" class="hidden">
-            <h1>My Favorite Person</h1>
-            <p>I cherish the way you listen, the way you laugh, and how you make everything feel so easy and peaceful.</p>
-            <button class="next-btn" onclick="next(4, 80)">One last thing...</button>
-        </div>
-
-        <div id="step4" class="hidden">
-            <h1>I'm So Grateful</h1>
-            <p>Having you in my life is a gift I never want to take for granted. You are incredible, inside and out.</p>
-            <button class="next-btn" onclick="next(5, 100)">Click for the surprise...</button>
-        </div>
-
-        <div id="step5" class="hidden">
-            <h1>Will you be my Valentine?</h1>
-            <div class="btn-group">
-                <button id="yesBtn" class="next-btn" onclick="celebrate()">Yes! ❤️</button>
-                <button id="noBtn" onmouseover="moveNo()">No</button>
-            </div>
-        </div>
-
-        <div id="step6" class="hidden">
-            <img src="https://media.tenor.com/gU_vSp_966gAAAAM/bear-kiss-bear-love.gif" style="width:100px; margin-bottom: 1rem;">
-            <h1>It's Official! ❤️</h1>
-            <p>You've made me the happiest guy, Racheal. Check your email to send the confirmation!</p>
-        </div>
+<div class="card">
+    <div id="stage1">
+        <h1>Valentine's Secret ❤️</h1>
+        <p>Babe, pick your vibe for tomorrow:</p>
+        <button class="btn-choice" onclick="saveChoice('I')">I</button>
+        <button class="btn-choice" onclick="saveChoice('O')">O</button>
     </div>
 
-    <script>
-        let yesScale = 1;
+    <div id="stage2" class="hidden">
+        <h2 id="choice-reveal"></h2>
+        <p id="choice-desc"></p>
+        <hr>
+        <p>The next stage unfolds at <strong>3:00 PM WAT</strong> today.</p>
+        <div id="timer">Checking time...</div>
+    </div>
 
-        function next(step, progress) {
-            // Play music on first click
-            if(step === 2) {
-                document.getElementById('player').src += "&autoplay=1";
+    <div id="stage3" class="hidden">
+        <h2 style="color: var(--pink);">The Bond Builder</h2>
+        <div id="turn-badge" class="badge"></div>
+        <div class="question-text" id="q-display">Ready?</div>
+        <button onclick="nextQuestion()" style="background: var(--pink); color:white; border:none; padding:10px 20px; border-radius:20px; cursor:pointer;">Next Question</button>
+        <p id="q-count" style="font-size: 0.8rem; color: #999; margin-top:10px;"></p>
+    </div>
+</div>
+
+<script>
+    const questions = [
+        { turn: "HER", q: "What is your favorite memory of us from this month?" },
+        { turn: "YOU", q: "What’s one thing you do that makes me fall for you all over again?" },
+        { turn: "HER", q: "If we could travel anywhere tomorrow, where would we go?" },
+        { turn: "YOU", q: "What is a 'habit' of ours that you never want to change?" },
+        { turn: "HER", q: "What was your first thought when you saw me today?" },
+        { turn: "YOU", q: "What’s a dream for us you’ve been thinking about lately?" },
+        { turn: "HER", q: "What song describes our relationship best right now?" },
+        { turn: "YOU", q: "What is one way I can make you feel more supported this week?" },
+        { turn: "HER", q: "What’s the best compliment I’ve ever given you?" },
+        { turn: "YOU", q: "If we were in a romantic movie, which one would it be?" },
+        { turn: "HER", q: "What is one thing you love about our 'quiet time' together?" },
+        { turn: "YOU", q: "What is your favorite physical feature of mine today?" },
+        { turn: "HER", q: "What are you most proud of us for?" },
+        { turn: "YOU", q: "What’s a new hobby you think we should try together?" },
+        { turn: "HER", q: "When did you know I was 'the one'?" },
+        { turn: "YOU", q: "What’s your favorite thing about my personality?" },
+        { turn: "HER", q: "What is a small gesture I do that means a lot to you?" },
+        { turn: "YOU", q: "What’s one thing you want to do more of with me this year?" },
+        { turn: "HER", q: "If you could describe our love in 3 words, what are they?" },
+        { turn: "YOU", q: "What are you most excited for about tomorrow's hangout?" }
+    ];
+
+    let currentQ = -1;
+
+    function saveChoice(letter) {
+        localStorage.setItem('valChoice', letter);
+        checkStatus();
+    }
+
+    function checkStatus() {
+        const choice = localStorage.getItem('valChoice');
+        const now = new Date();
+        const unlockTime = new Date();
+        unlockTime.setHours(15, 0, 0); // 3:00 PM
+
+        if (!choice) {
+            showStage('stage1');
+        } else if (now < unlockTime) {
+            showStage('stage2');
+            document.getElementById('choice-reveal').innerText = choice === 'I' ? "You picked: I" : "You picked: O";
+            document.getElementById('choice-desc').innerText = choice === 'I' ? 
+                "Can't wait to play some games when you come over! 🎮" : 
+                "Let's get some ice cream and gossip! 🍦✨";
+            startTimer(unlockTime);
+        } else {
+            showStage('stage3');
+        }
+    }
+
+    function showStage(id) {
+        ['stage1', 'stage2', 'stage3'].forEach(s => document.getElementById(s).classList.add('hidden'));
+        document.getElementById(id).classList.remove('hidden');
+    }
+
+    function startTimer(unlockTime) {
+        const timerDisplay = document.getElementById('timer');
+        const interval = setInterval(() => {
+            const now = new Date();
+            const diff = unlockTime - now;
+            if (diff <= 0) {
+                clearInterval(interval);
+                checkStatus();
+            } else {
+                const h = Math.floor(diff / 3600000);
+                const m = Math.floor((diff % 3600000) / 60000);
+                const s = Math.floor((diff % 60000) / 1000);
+                timerDisplay.innerText = `Unlocks in: ${h}h ${m}m ${s}s`;
             }
-            
-            // Hide all steps
-            for(let i=1; i<=6; i++) {
-                const el = document.getElementById('step' + i);
-                if(el) el.classList.add('hidden');
-            }
-            
-            // Show current step
-            const current = document.getElementById('step' + step);
-            current.classList.remove('hidden');
-            current.classList.add('active-step');
-            
-            // Update progress bar
-            document.getElementById('progress-bar').style.width = progress + '%';
+        }, 1000);
+    }
+
+    function nextQuestion() {
+        currentQ++;
+        if (currentQ < questions.length) {
+            const q = questions[currentQ];
+            const badge = document.getElementById('turn-badge');
+            badge.innerText = q.turn + "'S TURN";
+            badge.className = "badge " + (q.turn === "HER" ? "her-turn" : "his-turn");
+            document.getElementById('q-display').innerText = q.q;
+            document.getElementById('q-count').innerText = `Question ${currentQ + 1} of 20`;
+        } else {
+            document.getElementById('stage3').innerHTML = "<h2>❤️ See you tomorrow, babe!</h2>";
         }
+    }
 
-        function moveNo() {
-            const noBtn = document.getElementById('noBtn');
-            const yesBtn = document.getElementById('yesBtn');
-            
-            noBtn.style.position = 'fixed';
-            noBtn.style.left = Math.random() * (window.innerWidth - 100) + 'px';
-            noBtn.style.top = Math.random() * (window.innerHeight - 50) + 'px';
+    // Initial Check
+    checkStatus();
+</script>
 
-            yesScale += 0.5;
-            yesBtn.style.transform = `scale(${yesScale})`;
-        }
-
-        function celebrate() {
-            next(6, 100);
-            confetti({ particleCount: 200, spread: 80, origin: { y: 0.6 } });
-
-            setTimeout(() => {
-                const email = "Emmanueleggah@gmail.com";
-                const subject = "I'D LOVE TO BE YOUR VALENTINE! ❤️";
-                const body = "Hi Emmanuel! I just went through the journey you made for me. My answer is YES!";
-                window.location.href = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-            }, 3000);
-        }
-    </script>
 </body>
 </html>
